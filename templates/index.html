@@ -1,0 +1,133 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Model</title>
+    <style>
+        /* Background Styling */
+        body {
+            background-color: rgb(0, 0, 33);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* Title Styling */
+        h1 {
+            font-size: 2.2em;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            text-transform: uppercase;
+        }
+
+        /* Form Container */
+        .upload-container {
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        /* File Input Styling */
+        .file-input {
+            background: white;
+            color: black;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            margin-left: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        /* Button Styling */
+        .upload-btn, .home-btn {
+            padding: 12px 24px;
+            background: #00bfff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s ease-in-out;
+            width: 100%;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        /* Hover Effect */
+       /* Home Button Styling */
+.home-btn-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.home-btn {
+    padding: 2px 12px;
+    background: #00bfff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: 0.3s ease-in-out;
+    text-transform: uppercase;
+    width: 100px; /* Adjust width as needed */
+    text-align: center;
+}
+
+/* Hover Effect */
+.upload-btn:hover, .home-btn:hover {
+    background: #008cff;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.7);
+}
+
+    </style>
+</head>
+<body>
+    <h1>Train Model Using H2O</h1>
+
+    <div class="upload-container">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input class="file-input" type="file" name="file" accept=".csv" required>
+            <button class="upload-btn" type="submit">Upload CSV</button>
+        </form>
+    </div>
+
+    <div class="home-btn">
+        <button class="home-btn" onclick="redirectToHome()">Go to Home</button>
+    </div>
+
+    <script>
+        function redirectToHome() {
+            window.location.href = "http://localhost:3000";
+        }
+    </script>
+</body>
+</html>

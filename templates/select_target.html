@@ -1,0 +1,103 @@
+
+<!-- <form action="/train_model" method="post">
+    <input type="hidden" name="file_name" value="{{ file_name }}">
+    <label for="target">Select Target Column:</label>
+    <select name="target" required>
+        {% for column in columns %}
+            <option value="{{ column }}">{{ column }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Train Model</button>
+</form> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Model</title>
+    <style>
+        /* Center the form */
+        body {
+            background: rgb(0, 0, 33); /* Dark background */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+
+        /* Label Styling */
+        label {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Dropdown (Select) Styling */
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+            background: white;
+            color: black;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        /* Button Styling */
+        .train-btn {
+            padding: 12px 18px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background: #00bfff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s ease-in-out;
+        }
+
+        /* Button Hover Effect */
+        .train-btn:hover {
+            background: #008cff;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.7);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <form action="/train_model" method="post">
+            <input type="hidden" name="file_name" value="{{ file_name }}">
+            <label for="target">Select Target Column:</label>
+            <select name="target" required>
+                {% for column in columns %}
+                    <option value="{{ column }}">{{ column }}</option>
+                {% endfor %}
+            </select>
+            <button class="train-btn" type="submit">Train Model</button>
+        </form>
+    </div>
+
+</body>
+</html>

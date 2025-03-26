@@ -1,0 +1,11 @@
+Sore Troat,Fever,Swollen Glands,Congestion,Headache,Diagnosis
+yes,yes,yes,yes,yes,Strep throat
+no,no,no,yes,yes,Allergy
+yes,yes,no,yes,no,Cold
+yes,no,yes,no,no,Strep throat
+no,yes,no,yes,no,Cold
+no,no,no,yes,no,Allergy
+yes,no,yes,no,no,Strep throat
+yes,no,no,yes,yes,Allergy
+no,yes,no,yes,yes,Cold
+yes,yes,no,yes,yes,Cold
