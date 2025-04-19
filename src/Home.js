@@ -15,6 +15,8 @@ const  Home=()=> {
   const [isLoading, setIsLoading] = useState(false);
   const [cleanedFileUrl, setCleanedFileUrl] = useState("");
   const typedRef = useRef(null);
+  const fileRef = useRef(null);
+
  useEffect(() => {
       if (typedRef.current) {
           const typed = new Typed(typedRef.current, {
@@ -39,9 +41,7 @@ const  Home=()=> {
   }, []);
 
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  
 
   const handleUpload = async () => {
     if (!file || file.type !== "text/csv") {
@@ -79,6 +79,46 @@ const  Home=()=> {
     }
   };
 
+  // const handleUpload = async () => {
+  //   if (!file || file.type !== "text/csv") {
+  //     setMessage("Please select a valid CSV file.");
+  //     return;
+  //   }
+  
+  //   const formData = new FormData();
+  //   formData.append("file", file);
+  
+  //   setIsLoading(true);
+  //   setMessage("");
+  //   setReportUrl("");
+  //   setCleanedFileUrl("");
+  
+  //   try {
+  //     const response = await axios.post(
+  //       "http://127.0.0.1:5000/upload",
+  //       formData,
+  //       { headers: { "Content-Type": "multipart/form-data" } }
+  //     );
+  
+  //     setMessage(response.data.message);
+  
+  //     if (response.data.report_url) {
+  //       setReportUrl(`http://127.0.0.1:5000${response.data.report_url}`);
+  //     }
+  
+  //     if (response.data.file_path) {
+  //       setFile(response.data.file_path); // Store server path for cleaning
+  //     }
+  //     document.getElementById("fileInput").value = ""; // Reset file input
+
+  //   } catch (error) {
+  //     console.error(error);
+  //     setMessage("Failed to upload file.");
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+  
   const handleCleanCSV = async () => {
     if (!file || file.type !== "text/csv") {
       setMessage("Please select a valid CSV file.");
@@ -87,7 +127,6 @@ const  Home=()=> {
 
     const formData = new FormData();
     formData.append("file", file);
-    console.log(formData);
 
     setIsLoading(true);
     setMessage("");
@@ -111,6 +150,41 @@ const  Home=()=> {
     } finally {
       setIsLoading(false);
     }
+  };
+  // const handleCleanCSV = async () => {
+  //   if (!file) { // Now file contains the server path
+  //     setMessage("No uploaded file found. Please upload first.");
+  //     return;
+  //   }
+  
+  //   setIsLoading(true);
+  //   setMessage("");
+  //   setCleanedFileUrl("");
+  
+  //   try {
+  //     const response = await axios.post(
+  //       "http://127.0.0.1:5000/clean_csv",
+  //       { file: file }, // Send server file path instead of re-uploading
+  //       { headers: { "Content-Type": "application/json" }, responseType: "blob" }
+  //     );
+  
+  //     const url = window.URL.createObjectURL(new Blob([response.data]));
+  //     setCleanedFileUrl(url);
+  //   } catch (error) {
+  //     console.error(error);
+  //     setMessage("Failed to clean file.");
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+  
+  
+  // const handleFileChange = (event) => {
+  //   setFile(event.target.files[0]);
+  // };
+  
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
   };
 
   // Function to handle report download
@@ -218,6 +292,7 @@ const  Home=()=> {
                         /></div> */}
                 <div style={{ marginLeft: "550px", fontSize: "60px" }}>
                   <input
+                  id="fileInput"
                     type="file"
                     onChange={handleFileChange}
                     style={{

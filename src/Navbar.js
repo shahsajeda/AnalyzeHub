@@ -57,7 +57,7 @@ function Navbar({ reportUrl }) {
                             <span className="disabled-link">Quick Review (Not Ready)</span>
                         )}
                     </li>
-                    <li><Link to="/clean-csv">Clean CSV</Link></li>
+                    {/* <li><Link to="/clean-csv">Clean CSV</Link></li> */}
                     <li><Link to="/visualize">Visualize</Link></li>
                     <li><Link to="http://127.0.0.1:5001/">Train Your Model</Link></li>
                 </ul>

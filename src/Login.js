@@ -113,7 +113,7 @@
 
 // export default Login;
 import React, { useState } from "react";
-import { useNavigate ,Link} from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { auth } from "./firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
@@ -121,16 +121,21 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true); // Start loading
+    setError(""); // Clear previous errors
     try {
       await signInWithEmailAndPassword(auth, email, password);
       alert("Login Successful!");
       navigate("/home");
     } catch (error) {
       setError(error.message);
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -156,13 +161,20 @@ const Login = () => {
             required
             style={styles.input}
           />
-          <button type="submit" style={styles.button}>
-            Login
+          <button 
+            type="submit" 
+            style={loading ? styles.buttonLoading : styles.button} 
+            disabled={loading}
+          >
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
-        <p>
-  Didn't register? <Link to="/">SignUp</Link>
-</p>
+
+        <div className="signup-text" style={{ marginTop: "10px" }}>
+          <p style={{ color: "black" }}>
+            Didn't register? <Link to="/" style={{ color: "#007bff", fontWeight: "bold" }}>SignUp</Link>
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -178,23 +190,19 @@ const styles = {
     background: "linear-gradient(to right, #141e30, #243b55)",
   },
   card: {
-    width: "400px", // Increased width
-    height: "450px", // Increased height
+    width: "400px",
+    height: "350px",
     padding: "30px",
     backgroundColor: "#fff",
     borderRadius: "15px",
     boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
     textAlign: "center",
-    backgroundImage: "url('https://source.unsplash.com/400x450/?abstract,technology')", // ✅ Background Image
-    backgroundSize: "cover", // Cover entire div
-    backgroundPosition: "center", // Center image
   },
   title: {
     marginBottom: "20px",
-    color: "#fff", // Set white for visibility
+    color: "#007bff",
     fontSize: "22px",
     fontWeight: "bold",
-    textShadow: "2px 2px 4px rgba(0,0,0,0.5)", // Text shadow for readability
   },
   form: {
     display: "flex",
@@ -208,7 +216,7 @@ const styles = {
     border: "1px solid #ccc",
     borderRadius: "6px",
     fontSize: "16px",
-    backgroundColor: "rgba(255,255,255,0.8)", // Semi-transparent background
+    backgroundColor: "rgba(255,255,255,0.8)",
     outline: "none",
   },
   button: {
@@ -223,8 +231,16 @@ const styles = {
     transition: "background 0.3s ease",
     marginTop: "10px",
   },
-  buttonHover: {
+  buttonLoading: {
+    width: "85%",
+    padding: "12px",
     backgroundColor: "#0056b3",
+    color: "#fff",
+    border: "none",
+    borderRadius: "6px",
+    cursor: "not-allowed",
+    fontSize: "16px",
+    marginTop: "10px",
   },
   error: {
     color: "red",
@@ -234,4 +250,3 @@ const styles = {
 };
 
 export default Login;
-

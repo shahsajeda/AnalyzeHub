@@ -223,11 +223,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Typed from "typed.js";
+import Navbar from "./Navbar";
+
 
 
 const API_URL = "http://127.0.0.1:5000/query"; // Backend API endpoint
 
 function ChatWithCSV() {
+    const [reportUrl, setReportUrl] = useState("");
     const [query, setQuery] = useState(""); // User input query
     const [chatHistory, setChatHistory] = useState([]); // Chat history
     const [isLoading, setIsLoading] = useState(false); // Loading state
@@ -252,6 +255,7 @@ function ChatWithCSV() {
           });
 
           return () => {
+
               typed.destroy(); // Cleanup on unmount
           };
       }
@@ -291,6 +295,8 @@ function ChatWithCSV() {
     }, [chatHistory]);
 
     return (
+        <>
+                   <Navbar reportUrl={reportUrl} />
         <div style={{ padding: "20px", maxWidth: "800px", margin: "auto" }}>
             <h2>Chat with Your CSV </h2>
             <div ref={chatBoxRef} style={{
@@ -418,6 +424,8 @@ function ChatWithCSV() {
                 <img src="/robot11.png" alt="Robot" style={{ width: "250px", height: "300px", borderRadius: "10px" }} />
             </div>
         </div>
+        </>
+
     );
 }
 
